@@ -2,7 +2,6 @@ vim.g.nvim_tree_width = 25
 vim.g.nvim_tree_indent_markers = 0
 vim.g.nvim_tree_git_hl = 1
 vim.g.nvim_tree_highlight_opened_files = 1
-vim.g.nvim_tree_quit_on_open = 1
 
 vim.g.nvim_tree_show_icons = {
     git = 1,
@@ -61,6 +60,20 @@ require "nvim-tree".setup {
             "node_modules",
             ".cache"
         }
+    },
+    actions = {
+        open_file = {
+            quit_on_open = true,
+            resize_window = false,
+            window_picker = {
+              enable = true,
+              chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
+              exclude = {
+                filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
+                buftype = { "nofile", "terminal", "help" },
+              },
+            },
+          },
     },
     view = {
         width = 25,
