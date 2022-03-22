@@ -35,6 +35,18 @@ map("n", "<leader>fs", [[<cmd>lua require('telescope.builtin').current_buffer_fu
 map("n", "<leader>sd", [[<cmd>lua require('telescope.builtin').grep_string()<CR>]], nsopts)
 map("n", "<leader>fg", [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], nsopts)
 map("n", "<leader>?", [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]], nsopts)
+map(
+	"n",
+	"<leader>eo",
+	[[<cmd>lua require('telescope.builtin').find_files({ prompt_title = "<ORG Files>", cwd = "~/Dropbox/arch_linux/org"})<CR>]],
+	nsopts
+)
+map(
+	"n",
+	"<leader>ed",
+	[[<cmd>lua require('telescope.builtin').find_files({ prompt_title = "<dotfiles>", cwd = "~/.dotfiles"})<CR>]],
+	nsopts
+)
 
 -- LSP mappings
 bufmap(0, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", nsopts)
