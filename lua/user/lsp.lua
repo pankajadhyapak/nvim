@@ -8,7 +8,7 @@ vim.api.nvim_set_keymap("n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<
 local lspconfig = require("lspconfig")
 local on_attach = function(_, bufnr)
 	local opts = { noremap = true, silent = true }
-  local map = vim.api.nvim_buf_set_keymap
+	local map = vim.api.nvim_buf_set_keymap
 
 	-- vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
 	-- vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
@@ -35,18 +35,10 @@ local on_attach = function(_, bufnr)
 	-- 	[[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]],
 	-- 	opts
 	-- )
-  map(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-	map(0, "n", "gr", "<cmd>Telescope lsp_references<cr>", opts)
-	map(0, "n", "gi", "<cmd>Telescope lsp_implementations<cr>", opts)
-	map(0, "n", "gd", "<cmd>Telescope lsp_definitions<cr>", opts)
-	map(0, "n", "rn", "<cmd>Lspsaga rename<cr>", opts)
-	map(0, "n", "ca", "<cmd>Lspsaga code_action<cr>", opts)
-	map(0, "x", "ca", ":<c-u>Lspsaga range_code_action<cr>", opts)
-	map(0, "n", "K",  "<cmd>Lspsaga hover_doc<cr>", opts)
+
 	-- map(0, "n", "go", "<cmd>Lspsaga show_line_diagnostics<cr>", {silent = true, noremap = true})
 	-- map(0, "n", "gj", "<cmd>Lspsaga diagnostic_jump_next<cr>", {silent = true, noremap = true})
 	-- map(0, "n", "gk", "<cmd>Lspsaga diagnostic_jump_prev<cr>", {silent = true, noremap = true})
-	vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
 end
 
 -- nvim-cmp supports additional completion capabilities
@@ -62,53 +54,52 @@ for _, lsp in ipairs(servers) do
 	})
 end
 
-
-local lspsaga = require 'lspsaga'
-lspsaga.setup { -- defaults ...
-  debug = false,
-  use_saga_diagnostic_sign = true,
-  -- diagnostic sign
-  error_sign = "",
-  warn_sign = "",
-  hint_sign = "",
-  infor_sign = "",
-  diagnostic_header_icon = "   ",
-  -- code action title icon
-  code_action_icon = " ",
-  code_action_prompt = {
-    enable = true,
-    sign = true,
-    sign_priority = 40,
-    virtual_text = true,
-  },
-  finder_definition_icon = "  ",
-  finder_reference_icon = "  ",
-  max_preview_lines = 10,
-  finder_action_keys = {
-    open = "o",
-    vsplit = "s",
-    split = "i",
-    quit = "q",
-    scroll_down = "<C-f>",
-    scroll_up = "<C-b>",
-  },
-  code_action_keys = {
-    quit = "q",
-    exec = "<CR>",
-  },
-  rename_action_keys = {
-    quit = "<C-c>",
-    exec = "<CR>",
-  },
-  definition_preview_icon = "  ",
-  border_style = "single",
-  rename_prompt_prefix = "➤",
-  rename_output_qflist = {
-    enable = false,
-    auto_open_qflist = false,
-  },
-  server_filetype_map = {},
-  diagnostic_prefix_format = "%d. ",
-  diagnostic_message_format = "%m %c",
-  highlight_prefix = false,
-}
+local lspsaga = require("lspsaga")
+lspsaga.setup({ -- defaults ...
+	debug = false,
+	use_saga_diagnostic_sign = true,
+	-- diagnostic sign
+	error_sign = "",
+	warn_sign = "",
+	hint_sign = "",
+	infor_sign = "",
+	diagnostic_header_icon = "   ",
+	-- code action title icon
+	code_action_icon = " ",
+	code_action_prompt = {
+		enable = true,
+		sign = true,
+		sign_priority = 40,
+		virtual_text = true,
+	},
+	finder_definition_icon = "  ",
+	finder_reference_icon = "  ",
+	max_preview_lines = 10,
+	finder_action_keys = {
+		open = "o",
+		vsplit = "s",
+		split = "i",
+		quit = "q",
+		scroll_down = "<C-f>",
+		scroll_up = "<C-b>",
+	},
+	code_action_keys = {
+		quit = "q",
+		exec = "<CR>",
+	},
+	rename_action_keys = {
+		quit = "<C-c>",
+		exec = "<CR>",
+	},
+	definition_preview_icon = "  ",
+	border_style = "single",
+	rename_prompt_prefix = "➤",
+	rename_output_qflist = {
+		enable = false,
+		auto_open_qflist = false,
+	},
+	server_filetype_map = {},
+	diagnostic_prefix_format = "%d. ",
+	diagnostic_message_format = "%m %c",
+	highlight_prefix = false,
+})
