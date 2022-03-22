@@ -1,45 +1,61 @@
--- Incremental live completion (note: this is now a default on master)
+
+--Incremental live completion (note: this is now a default on master)
 vim.o.inccommand = "nosplit"
--- Set highlight on search
+
+--Set highlight on search
 vim.o.hlsearch = true
--- Make line numbers default
+
+--Make line numbers default
 vim.wo.number = true
 -- Relative number
 vim.wo.relativenumber = true
--- Do not save when switching buffers (note: this is now a default on master)
+
+--Do not save when switching buffers (note: this is now a default on master)
 vim.o.hidden = true
+
 -- --Enable mouse mode
 vim.o.mouse = "a"
--- Enable break indent
+
+--Enable break indent
 vim.o.breakindent = true
--- Save undo history
+
+--Save undo history
 vim.opt.undofile = true
--- Case insensitive searching UNLESS /C or capital in search
+
+--Case insensitive searching UNLESS /C or capital in search
 vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.incsearch = true
--- Decrease update time
+
+--Decrease update time
 vim.o.updatetime = 250
 vim.wo.signcolumn = "yes"
--- Set colorscheme (order is important here)
+
+--Set colorscheme (order is important here)
 vim.o.termguicolors = true
 vim.opt.termguicolors = true
+
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
--- Remap for dealing with word wrap
-vim.api.nvim_set_keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
-vim.api.nvim_set_keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
--- Highlight on yank
-vim.cmd[[
 
+
+--Remap for dealing with word wrap
+vim.api.nvim_set_keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", {noremap = true, expr = true, silent = true})
+vim.api.nvim_set_keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", {noremap = true, expr = true, silent = true})
+
+-- Highlight on yank
+vim.cmd [[
   augroup YankHighlight
     autocmd!
     autocmd TextYankPost * silent! lua vim.highlight.on_yank()
   augroup end
 ]]
+
 -- Y yank until the end of line  (note: this is now a default on master)
-vim.api.nvim_set_keymap("n", "Y", "y$", { noremap = true })
-vim.cmd"filetype plugin indent on"
+vim.api.nvim_set_keymap("n", "Y", "y$", {noremap = true})
+
+
+vim.cmd("filetype plugin indent on")
 vim.o.shortmess = vim.o.shortmess .. "c"
 vim.o.hidden = true
 vim.o.whichwrap = "b,s,<,>,[,],h,l"
@@ -59,9 +75,10 @@ vim.g.noswapfile = true
 vim.o.sidescrolloff = 5
 vim.wo.wrap = false
 vim.o.cursorline = true
+
 -- Search
-vim.o.scrolloff = 10
--- always ten lines below the cursor
+vim.o.scrolloff = 10 -- always ten lines below the cursor
+
 -- Tabs
 vim.o.autoindent = true
 vim.o.smartindent = true
@@ -72,6 +89,7 @@ vim.o.cindent = true
 vim.o.shiftwidth = 4
 vim.o.softtabstop = 4
 vim.o.autoindent = true
+
 -- Disable various builtin plugins in Vim that bog down speed
 vim.g.loaded_matchparen = 1
 vim.g.loaded_matchit = 1
@@ -87,8 +105,10 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_tutor_mode_plugin = 1
 vim.g.loaded_remote_plugins = 1
--- Set colorscheme
+
+--Set colorscheme
 vim.o.termguicolors = true
-vim.cmd"colorscheme catppuccin"
+vim.cmd [[colorscheme catppuccin]]
+
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = "menuone,noselect"
+vim.o.completeopt = 'menuone,noselect'
