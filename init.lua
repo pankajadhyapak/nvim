@@ -8,6 +8,7 @@ require "user.nvim-tree"
 require "user.indent"
 require "user.git"
 require "user.status-line"
+require "user.cmp"
 require "user.org"
 
 

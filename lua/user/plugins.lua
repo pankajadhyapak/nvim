@@ -24,6 +24,13 @@ require('packer').startup(function(use)
   use 'nvim-treesitter/nvim-treesitter'
   use 'nvim-orgmode/orgmode'
   use 'akinsho/org-bullets.nvim'
+
+  use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'saadparwaiz1/cmp_luasnip'
+  use 'L3MON4D3/LuaSnip' -- Snippets plugin
+  use "hrsh7th/cmp-buffer" -- buffer completions
+  use "hrsh7th/cmp-path" -- path completions
 end)
 
 -- one liner setups
