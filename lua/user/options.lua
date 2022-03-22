@@ -1,4 +1,3 @@
-
 --Incremental live completion (note: this is now a default on master)
 vim.o.inccommand = "nosplit"
 
@@ -37,11 +36,6 @@ vim.opt.termguicolors = true
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
-
-
-
-
-
 
 vim.cmd("filetype plugin indent on")
 vim.o.shortmess = vim.o.shortmess .. "c"
@@ -96,31 +90,36 @@ vim.g.loaded_remote_plugins = 1
 
 --Set colorscheme
 vim.o.termguicolors = true
-vim.cmd [[colorscheme catppuccin]]
+vim.cmd([[colorscheme catppuccin]])
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
-
-
--- Highlight on yank
-vim.cmd [[
-  augroup YankHighlight
-    autocmd!
-    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
-  augroup end
-]]
-
+vim.o.completeopt = "menuone,noselect"
 
 -- Highlight on yank
-vim.cmd [[
-  augroup YankHighlight
-    autocmd!
-    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
-  augroup end
-]]
-vim.cmd [[
+vim.cmd([[
   augroup Packer
     autocmd!
     autocmd BufWritePost init.lua PackerCompile
   augroup end
-]]
+
+  augroup YankHighlight
+    autocmd!
+    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
+  augroup end
+
+  augroup _markdown
+    autocmd!
+    autocmd FileType markdown setlocal wrap
+    autocmd FileType markdown setlocal spell
+  augroup end
+
+  augroup _lsp
+    autocmd!
+    autocmd BufWritePre * lua vim.lsp.buf.formatting()
+  augroup end
+
+  augroup _filetypes
+    autocmd!
+    autocmd FocusLost,WinLeave * :silent! update
+  augroup end
+]])
