@@ -26,8 +26,11 @@ require("packer").startup(function(use)
 
 	use("neovim/nvim-lspconfig") -- Collection of configurations for built-in LSP client
 	use("williamboman/nvim-lsp-installer")
-	use("hrsh7th/nvim-cmp") -- Autocompletion plugin
+	use {'tami5/lspsaga.nvim' }
 	use("hrsh7th/cmp-nvim-lsp")
+
+
+	use("hrsh7th/nvim-cmp") -- Autocompletion plugin
 	use("hrsh7th/cmp-buffer") -- buffer completions
 	use("hrsh7th/cmp-path") -- path completions
 	use("SirVer/ultisnips")
