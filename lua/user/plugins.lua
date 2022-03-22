@@ -5,12 +5,6 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
 end
 
-vim.cmd [[
-  augroup Packer
-    autocmd!
-    autocmd BufWritePost init.lua PackerCompile
-  augroup end
-]]
 
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
@@ -28,6 +22,8 @@ require('packer').startup(function(use)
   use "lukas-reineke/indent-blankline.nvim"
   use 'lewis6991/gitsigns.nvim'
   use 'nvim-treesitter/nvim-treesitter'
+  use 'nvim-orgmode/orgmode'
+  use 'akinsho/org-bullets.nvim'
 end)
 
 -- one liner setups
@@ -39,14 +35,3 @@ require "colorizer".setup(
 --Enable Comment.nvim
 require('Comment').setup()
 
---Remap for dealing with word wrap
-vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
-vim.api.nvim_set_keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
-
--- Highlight on yank
-vim.cmd [[
-  augroup YankHighlight
-    autocmd!
-    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
-  augroup end
-]]
