@@ -1,8 +1,5 @@
 
--- luasnip setup
-local luasnip = require 'luasnip'
-
-
+local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
 --   פּ ﯟ   some other good icons
 local kind_icons = {
     Text = "",
@@ -36,7 +33,7 @@ local cmp = require 'cmp'
 cmp.setup {
   snippet = {
     expand = function(args)
-      luasnip.lsp_expand(args.body)
+        vim.fn["UltiSnips#Anon"](args.body)
     end,
   },
   mapping = {
@@ -53,19 +50,15 @@ cmp.setup {
     ['<Tab>'] = function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
       else
-        fallback()
+        cmp_ultisnips_mappings.expand_or_jump_forwards(fallback)
       end
     end,
     ['<S-Tab>'] = function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
       else
-        fallback()
+        cmp_ultisnips_mappings.jump_backwards(fallback)
       end
     end,
   },
@@ -76,8 +69,8 @@ cmp.setup {
       vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
       -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
       vim_item.menu = ({
-        -- nvim_lsp = "[LSP]",
-        luasnip = "[Snippet]",
+        nvim_lsp = "[LSP]",
+        ultisnips = "[Snippet]",
         buffer = "[Buffer]",
         path = "[Path]",
         orgmode = "[orgmode]",
@@ -86,8 +79,8 @@ cmp.setup {
     end,
   },
   sources = {
-    -- { name = "nvim_lsp" },
-    { name = "luasnip" },
+    { name = "nvim_lsp" },
+    { name = "ultisnips" },
     { name = "buffer" },
     { name = "path" },
     { name = 'orgmode' },

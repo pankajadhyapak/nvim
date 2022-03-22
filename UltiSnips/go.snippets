@@ -1,0 +1,208 @@
+global !p
+def get_pkg_name():
+	return os.path.basename(os.path.dirname(path))
+endglobal
+
+snippet dt
+"2006-01-02T15:04:05.000Z"
+endsnippet
+
+snippet desc "Describe Ginkgo"
+Describe("$1", func() {$0})
+endsnippet
+
+snippet ct "Context Ginkgo"
+Context("$1", func() {$0})
+endsnippet
+
+snippet it "It Ginkgo"
+It("$1", func() {$0})
+endsnippet
+
+snippet be "BeforeEach Gomega/Ginkgo"
+BeforeEach(func() {
+$0
+})
+endsnippet
+
+snippet ex "Expect().To(Equal()) Gomega"
+Expect($1).To(Equal($2))
+endsnippet
+
+snippet ginkgo "ginkgo skeleton"
+import (
+	"testing"
+
+	. "github.com/onsi/ginkgo"
+	. "github.com/onsi/gomega"
+)
+
+func Test$1(t *testing.T) {
+	RegisterFailHandler(Fail)
+	RunSpecs(t, "$1 Suite")
+}
+
+var _ = Describe("$1", func() {})
+endsnippet
+
+snippet key_set "if ok"
+if ${3:val}, ok := ${1:dict}[${2:key}]; ok {
+    $0
+}
+endsnippet
+
+snippet key_notset "if !ok"
+if ${3:val}, ok := ${1:dict}[${2:key}]; !ok {
+    $0
+}
+endsnippet
+
+snippet m "Method"
+func (${1:receiver} ${2:type}) ${3:name}(${4:params})${5/(.+)/ /}${5:type} {
+	${0:${VISUAL}}
+}
+endsnippet
+
+snippet ane "assert.NoError"
+assert.NoError(t, ${1:err})$0
+endsnippet
+
+snippet ae "assert.Equal"
+assert.Equal(t, ${1:expected}, ${2:actual})$0
+endsnippet
+
+
+snippet ae "assert.Equal"
+assert.Equal(t, ${1:expected}, ${2:actual})$0
+endsnippet
+
+snippet af "assert.False"
+assert.False(t, ${1:actual})$0
+endsnippet
+
+snippet at "assert.True"
+assert.True(t, ${1:actual})$0
+endsnippet
+
+global !p
+def get_pkg_name():
+	return os.path.basename(os.path.dirname(path))
+endglobal
+
+snippet pk "insert pkg name for current dir"
+package `!p snip.rv = get_pkg_name()`
+
+$0
+endsnippet
+
+snippet construct ""
+func New$1() $1{
+	return $1{
+		$0
+	}
+}
+endsnippet
+
+snippet errorStruct "declare custom error struct"
+type ${1:Name}Error struct {
+	msg string
+}
+
+func (e *$1Error) Error() string {
+	return e.msg
+}$0
+endsnippet
+
+snippet ew "errors.Wrap(err, msg)"
+errors.Wrap(${1:err}, "$2")$0
+endsnippet
+
+snippet ewf "errors.Wrapf()"
+errors.Wrapf(${1:err}, "$2", $1)$0
+endsnippet
+
+snippet rew "return errors.Wrap"
+return errors.Wrap(${1:err}, "$2")$0
+endsnippet
+
+snippet of "open file" b
+f, err := os.Open($1)
+${2:defer }f.Close()
+endsnippet
+
+snippet ap= "append = "
+$1 = append($1, ${2: val})
+endsnippet
+
+snippet init "func init()"
+func init() {
+	$0
+}
+endsnippet
+
+snippet ve "var err error"
+var err error$0
+endsnippet
+
+snippet errc "if method call = err; return err"
+if err := ${1:call()}; err != nil {
+	${2:return err}
+}
+endsnippet
+
+snippet ifel "if error != nil log fatal"
+if err != nil {
+	log.Fatalln(err)
+}
+endsnippet
+
+snippet rne "require no error"
+require.NoError(t, ${1:err})
+endsnippet
+
+snippet cc "context.Context"
+context.Context$0
+endsnippet
+
+snippet ior "io.Reader"
+io.Reader$0
+endsnippet
+
+snippet pop "pop last slice element"
+${2:lastElement} := ${1:slice}[len($1)-1]
+$1 = $1[:len($1)-1]
+endsnippet
+
+snippet ju "json.Unmarshal"
+if err := json.Unmarshal(${1:source}, &${2:target}); err != nil {
+	return ${3:nil}, ${4:errors.Wrap(err, "failed to Unmarshal")}
+}$0
+endsnippet
+
+snippet req "http request"
+resp, err := http.DefaultClient.Do(req)
+if err != nil {
+	return nil, errors.Wrap(err, "failed to do request")
+}
+defer resp.Body.Close()
+
+if resp.StatusCode != ${1:http.StatusOK} {
+	return nil, errors.Errorf(
+		"Received non-$1 status code %d",
+		resp.StatusCode,
+	)
+}
+
+body, err := ioutil.ReadAll(resp.Body)
+if err != nil {
+	return nil, errors.Wrap(err, "could not read response body$2")
+}$0
+endsnippet
+
+snippet tp "testhelper persist"
+th.NoError(th.DB.Persist(th.Ctx, &${1:entity}))
+endsnippet
+
+snippet ma "mock.AnythingOfTypeArgument"
+mock.AnythingOfTypeArgument("${1:*context.emptyCtx}"),
+endsnippet

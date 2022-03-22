@@ -25,12 +25,14 @@ require('packer').startup(function(use)
   use 'nvim-orgmode/orgmode'
   use 'akinsho/org-bullets.nvim'
 
+  use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
+  use "williamboman/nvim-lsp-installer"
   use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
   use 'hrsh7th/cmp-nvim-lsp'
-  use 'saadparwaiz1/cmp_luasnip'
-  use 'L3MON4D3/LuaSnip' -- Snippets plugin
   use "hrsh7th/cmp-buffer" -- buffer completions
   use "hrsh7th/cmp-path" -- path completions
+  use 'SirVer/ultisnips'
+  use 'quangnguyen30192/cmp-nvim-ultisnips'
 end)
 
 -- one liner setups
