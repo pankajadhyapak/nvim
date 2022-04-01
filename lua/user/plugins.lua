@@ -8,6 +8,7 @@ end
 require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
 	use("numToStr/Comment.nvim")
+	use("windwp/nvim-autopairs")
 	use("kyazdani42/nvim-web-devicons")
 	use("nvim-lua/plenary.nvim")
 	use("norcalli/nvim-colorizer.lua")

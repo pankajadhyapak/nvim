@@ -90,7 +90,14 @@ vim.g.loaded_remote_plugins = 1
 
 --Set colorscheme
 vim.o.termguicolors = true
-vim.cmd([[colorscheme catppuccin]])
+vim.cmd([[
+try
+  colorscheme catppuccin
+catch /^Vim\%((\a\+)\)\=:E185/
+  colorscheme default
+  set background=dark
+endtry
+]])
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
