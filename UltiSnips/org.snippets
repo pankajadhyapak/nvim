@@ -1,0 +1,33 @@
+snippet date "YYYY-MM-DD" w
+* `!v strftime("%a %d %b %Y")`
+endsnippet
+
+snippet t "Task" w
+* TODO $1
+  SCHEDULED: ${2:<`!v strftime('%d-%m-%Y %a')`>}
+endsnippet
+snippet st "Task" w
+** TODO $1
+   SCHEDULED: ${2:<`!v strftime('%d-%m-%Y %a')`>}
+endsnippet
+snippet sln "Squad lead meeting new entry" w
+* `!v strftime("%a %d %b %Y")`
+** Project Updates
+   - ${1:N/A}
+** Issues / blockers
+   - ${2:N/A}
+** Recruiting
+   - ${3:N/A}
+** New Joiners
+   - ${4:N/A}
+** Probation goals updates
+   - ${5:N/A}
+** Announcemnts
+   - ${6:N/A}
+** Vacations upcoming & Now
+   - ${7:N/A}
+** Team statistics, Velocity
+   - ${8:N/A}
+endsnippet
+
+
