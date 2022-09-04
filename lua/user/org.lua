@@ -10,7 +10,7 @@ require("nvim-treesitter.configs").setup({
 })
 
 require("orgmode").setup({
-	org_agenda_files = { "~/Dropbox/arch_linux/org/*" },
+	org_agenda_files = { "~/Dropbox/arch_linux/org/**/*" },
 	org_default_notes_file = "~/Dropbox/arch_linux/org/refile.org",
 	diagnostics = false,
 	org_agenda_templates = { t = { description = "Task", template = "* TODO %?\n SCHEDULED: %t\n %u" } },
