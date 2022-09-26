@@ -23,7 +23,9 @@ require("packer").startup(function(use)
 	use("lewis6991/gitsigns.nvim")
 	use("nvim-treesitter/nvim-treesitter")
 	use("nvim-orgmode/orgmode")
-	use("akinsho/org-bullets.nvim")
+	use {'akinsho/org-bullets.nvim', config = function()
+		require('org-bullets').setup()
+	end}
 
 	use("neovim/nvim-lspconfig") -- Collection of configurations for built-in LSP client
 	use("williamboman/nvim-lsp-installer")
